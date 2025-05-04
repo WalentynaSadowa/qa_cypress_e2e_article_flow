@@ -35,12 +35,14 @@ describe('Article flow', () => {
   it('should delete an article', () => {
     cy.login(email, password);
     cy.createArticle(article);
-    cy.visit(`/`);
-
+ 
+    cy.visit('/');
     cy.contains('Global Feed').click();
     cy.contains(article.title).click();
-    cy.contains('Delete Article').click();
 
+    cy.contains('Delete Article').click();
+  
+    cy.contains('Global Feed').click();
     cy.contains(article.title).should('not.exist');
   });
 });
